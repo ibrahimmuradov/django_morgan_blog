@@ -349,7 +349,6 @@
 
 	function deleteComment(id) {
 		const deleteCommentUrl = "{% url 'blog:delete-comment' %}"
-		const csrf = document.getElementsByName("csrfmiddlewaretoken");
 
 		$.ajax({
 			type: "POST",
