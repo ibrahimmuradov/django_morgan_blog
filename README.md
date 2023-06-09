@@ -1,3 +1,7 @@
+# Django Morgan Blog
+
+You can use the personal blog project I made according to your wishes.
+
 ## Installation
 
 ```bash
