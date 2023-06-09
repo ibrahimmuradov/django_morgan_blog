@@ -2,6 +2,10 @@
 
 You can use the personal blog project I made according to your wishes.
 
+## Description
+
+I made the backend part of the project. I made some minor changes to the front end. After installing the project, you will be able to publish blogs from the admin panel and manage them as you wish. Users can register, login and edit their own information. Your most read blog posts will be in the popular blogs section of the page. The blogs you share can be commented and shared. Users can contact you in the contact section.
+
 ## Installation
 
 ```bash
