@@ -38,7 +38,11 @@
                 </div>
                 <a href="{% url 'blog:post' head_blog.id %}">
                     <div class="thumb rounded">
-                        <div class="inner data-bg-image" data-bg-image="{{ head_blog.blogimage_set.first.image.url }}"></div>
+						{% if blog.blogimage_set.first.image %}
+							<div class="inner data-bg-image" data-bg-image="{{ head_blog.blogimage_set.first.image.url }}"></div>
+						{% else %}
+							<div class="inner data-bg-image" data-bg-image="{% static 'assets/images/default-blog.svg' %}"></div>
+						{% endif %}
                     </div>
                 </a>
             </div>
