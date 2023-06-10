@@ -209,7 +209,7 @@ $.ajax({
   type: "POST",
   url: '{% url 'blog:base' %}',
   data: {
-    csrfmiddlewaretoken: {{ csrf }},
+    csrfmiddlewaretoken: '{{ csrf_token }}',
     url: window.location.href,
     action: "post",
   },
