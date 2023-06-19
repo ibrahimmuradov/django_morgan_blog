@@ -68,8 +68,8 @@ def post(request, id):
         get_user = user.objects.get(username=request.user.username) if user.objects.filter(
             username=request.user).exists() else None
 
-    count_comment = Comment.objects.filter(Q(user=get_user)&Q(parent__isnull=True)).count()
-    count_reply_comment = Comment.objects.filter(Q(user=get_user)&Q(parent__isnull=False)).count()
+    count_comment = get_blog.comment_set.filter(Q(user=get_user)&Q(parent__isnull=True)).count()
+    count_reply_comment = get_blog.comment_set.filter(Q(user=get_user)&Q(parent__isnull=False)).count()
 
     if request.method == "POST" and "comment" in request.POST:
         comment = request.POST.get("comment")
