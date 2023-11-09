@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import (AuthenticationForm, PasswordResetForm, SetPasswordForm)
 from .models import UserBase
+import re
 
 
 class UserLoginForm(AuthenticationForm):
@@ -30,9 +31,15 @@ class RegistrationForm(forms.ModelForm):
 
     def clean_user_name(self):
         username = self.cleaned_data['username'].lower()
-        filter_user = UserBase.objects.filter(username=username)
-        if filter_user.count():
+        filter_user = UserBase.objects.filter(username=username).exists()
+
+        filter_re = r"^(?=.{3,20}$)(?![_.-])(?!.*[_.]{2})[a-zA-Z0-9._-]+(?<![_.])$"
+        
+        if filter_user:
             raise forms.ValidationError("Username already exists")
+        elif not re.search(filter_re, username):
+            raise forms.ValidationError('You can only use letters, numbers and dot in the username')
+        
         return username
 
     def clean_password2(self):
