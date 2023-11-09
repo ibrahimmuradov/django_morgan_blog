@@ -44,9 +44,18 @@ class RegistrationForm(forms.ModelForm):
 
     def clean_password2(self):
         clean_data = self.cleaned_data
-        if clean_data['password'] != clean_data['password2']:
+
+        password = clean_data['password']
+        password2 = clean_data['password2']
+
+        if len(password) < 5:
+            raise forms.ValidationError('Your password must be at least 5 characters')
+        if not any(char.isalpha() for char in password):
+            raise forms.ValidationError('Your password must use at least 1 letter')
+        if password != password2:
             raise forms.ValidationError('Passwords do not match.')
-        return clean_data['password2']
+
+        return password2
 
     def clean_email(self):
         email = self.cleaned_data['email']
