@@ -15,7 +15,6 @@ def contact(request):
 
             subject = contactForm.cleaned_data.get('subject')
             message = contactForm.cleaned_data.get('message')
-            print(subject, message)
 
             # sending mail
 
